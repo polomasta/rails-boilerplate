@@ -1,0 +1,19 @@
+= blok._editable.html_safe
+.container.justify-content-center.align-items-center.py-5.text-center
+  .row
+    .col-12
+      h1.my-4= blok.title
+  .row.justify-content-center.mb-5
+    .col-2.align-self-center
+      hr.gw-phat-hr
+  .row
+    .col-12
+      = image_tag blok.logo
+  .row.py-5
+    .col-12.my-5
+      blockquote.blockquote
+        h4= blok.testimonial_body
+        footer.blockquote-footer
+          = blok.given_by
+      - if blok.cta_button
+        = link_to blok.cta_button.first.text, blok.cta_button.first.link.url, class: "btn btn-lg btn-gigwage mt-5"

@@ -1,0 +1,18 @@
+= blok._editable.html_safe
+.jumbotron.jumbotron-fluid.bg-white#homepage-jumbotron style="background-image: url('#{asset_url('pricing.svg')}'); background-position: right -175px; background-repeat: no-repeat; background-size: cover;"
+  .container.mt-5
+    .row
+      .col-12.text-center.text-white.mt-lg-5
+        h1.mt-5.text-white= @story.content.title
+        h4.mt-3.text-white.mb-5.lead= @story.content.subtitle
+    .row.justify-content-center.align-content-stretch
+      - blok.tiers.each do |tier|
+        .col-12.col-md-6.col-lg-4.pricing-tier.box.p-4
+          .text-center
+            h4.my-4= tier.name
+            = image_tag(tier.icon, class: "my-4 pricing-icon") if tier.icon.present?
+            p.tier-price= tier.monthly_price.present? ? "#{number_to_currency(tier.monthly_price, precision: 0)}/mo" : "Contact Us"
+          .tier-descritpion.my-4
+            = richtext(tier.description)
+          - if tier.cta_button
+            .cta-button.text-center.justify-self-end= link_to tier.cta_button.first.text, tier.cta_button.first.link.url, class: "btn btn-lg pricing-button mt-5"

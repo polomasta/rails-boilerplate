@@ -1,0 +1,47 @@
+= blok._editable.html_safe
+#footer_wave
+footer.marketing-footer
+  .footer-wrap
+    .container.py-4
+      .row.align-items-center
+        .col-12.col-md-6
+          h4.footer-heading
+            = t('ready_to_get_started').capitalize
+            |?
+          h5.footer-subheading
+            = t('contact_us_anytime').capitalize
+            |.
+        .col-12.col-md-6
+          .row
+            .col-12.col-lg-6.mb-3
+              = link_to t('request_access').upcase, "/request-access", class: "btn btn-block btn-lg btn-square footer-request-access"
+            .col-12.col-lg-6
+              = link_to t('log_in').upcase, new_user_session_path, class: "btn btn-lg btn-square btn-block btn-outline-white footer-login"
+      .row.my-4
+        .col-12.col-lg-3
+          h6.mb-2= t('follow_us').titleize
+          .row.footer-social-icons
+            .col-2
+              a href="https://www.facebook.com/GigWage"
+                i.fa.fa-facebook
+            .col-2
+              a href="https://www.linkedin.com/company/gigwage"
+                i.fa.fa-linkedin
+            .col-2
+              a href="https://www.twitter.com/gigwage"
+                i.fa.fa-twitter
+            .col-2
+              a href="https://www.instagram.com/gigwage"
+                i.fa.fa-instagram
+            .col-2
+              a href="https://medium.com/gig-wage"
+                i.fa.fa-medium
+      .row.mt-5.justify-content-between
+        - column_count = 12 / blok.footer_columns.size
+        - blok.footer_columns.each do |column|
+          .footer-column class="col-6 col-md-#{column_count}"
+            .column-heading= column.heading
+            .column-links
+              ul
+                - column.links.each do |link|
+                  li= link_to link.text, link.url.blank? ? "#" : link.url, class: "footer-column-link"

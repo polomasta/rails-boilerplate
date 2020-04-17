@@ -1,0 +1,39 @@
+= blok._editable.html_safe
+.jumbotron.jumbotron-fluid#personas_jumbotron
+  = image_tag 'grid-dots.svg', id: "grid_dots"
+  .container
+    .row.justify-content-center
+      .col-12.col-lg-8.text-center.mb-5
+        h1= blok.heading
+
+    .row
+      .col-12.mt-4
+        #persona_carousel.carousel.slide[data-ride="carousel", data-interval="false"]
+          .d-none.d-lg-block.carousel-nav.mb-4
+            .row.justify-content-between
+              - blok.personas.each_with_index do |persona,index|
+                .carousel-nav-item.col-6.col-md-3.p-2.text-center
+                  .icon class="#{index == 0 ? 'active':''}"
+                    = image_tag(persona.icon)
+                  h5.my-3.persona-name= persona.name
+                  p.persona-short-description= persona.short_description
+                  .persona-link
+                    a[data-target="#persona_carousel" data-slide-to="#{index}" class="carousel-link #{index == 0 ? 'active':''}"]
+                      | Learn More
+
+          .row.carousel-inner
+            - blok.personas.each_with_index do |persona,index|
+              .col-12.carousel-item class="#{index == 0 ? 'active':''}"
+                .row
+                  .col-12.col-lg-5
+                    .icon-small= image_tag(persona.icon)
+                  .col-12.col-lg-6.offset-lg-1.pt-3
+                    h4.persona-name.mb-3= persona.name
+                    h3.persona-heading.mb-3= persona.heading
+                    = richtext(persona.long_description)
+                    - if persona.cta_button
+                      = link_to persona.cta_button.first.text, persona.cta_button.first.link.url, class: "btn btn-lg btn-gigwage mt-5"
+          .d-lg-none.text-right.mt-5
+            ol.carousel-indicators
+              - blok.personas.each_with_index do |persona,index|
+                li data-target="#persona_carousel" data-slide-to="#{index}" class="#{index == 0 ? 'active':''}"

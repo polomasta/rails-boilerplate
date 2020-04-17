@@ -1,0 +1,8 @@
+= blok._editable.html_safe
+#press.py-5
+  .container.py-5
+    .row.justify-content-center.align-items-center
+      - blok.press_items.each do |item|
+        .col-12.col-md-4.press-item-container.text-center.mb-4
+          .press-item-image.mb-3= image_tag(item.image)
+          .press-item-text.p-3= item.text

@@ -1,22 +1,19 @@
 class PagesController < ApplicationController
   def index
-    response.headers['X-FRAME-OPTIONS'] = 'ALLOWALL'
+    response.headers['X-FRAME-OPTIONS'] = 'ALLOW-FROM https://app.storyblok.com/'
 
     client = Storyblok::Client.new(
-      logger: logger,
       cache_version: Time.now.to_i,
-      token: 'Dv2ok3DqODzzb8QUuN2XCgtt',
+      token: ENV['STORYBLOK_TOKEN'],
       version: 'draft'
     )
 
-    assigns = {
-      story: client.story(params[:path])['data']['story'],
-      global: client.story('global')['data']['story']
-    }
+    @story = JSON.parse(client.story(params[:path].blank? ? '/home' : params[:path])['data']['story'].to_json, object_class: OpenStruct)
+    @navigation = client.tree
 
-    Liquid::Template.file_system = Liquid::LocalFileSystem.new('app/views/components')
-
-    template = Liquid::Template.parse(File.read('app/views/layouts/page.liquid'))
-    render text: template.render!(assigns.stringify_keys, {})
+    respond_to do |format|
+      format.html
+      format.json { render json: {message: "Hello, robot, I am Gig Wage."} }
+    end
   end
 end

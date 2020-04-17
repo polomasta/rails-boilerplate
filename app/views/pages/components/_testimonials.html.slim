@@ -1,0 +1,28 @@
+= blok._editable.html_safe
+.jumbotron.jumbotron-fluid#testimonials.bg-white
+  .container
+    .row.justify-content-center.justify-content-lg-end.text-right
+      .col-12.mb-5
+        h1.underline-brand-primary.underline-right= blok.heading
+
+    .row
+      .col-12.mt-4
+        #testimonial_carousel.carousel.slide[data-ride="carousel", data-interval="false"]
+          .row.h-100.align-items-center
+            .col-6.order-1.h-100
+              .carousel-nav.h-100
+                - blok.testimonial_items.each_with_index do |testimonial,index|
+                  .carousel-nav-item class="#{index == 0 ? 'active' : 'not-active'}"
+                    .testimonial-link
+                      a[data-target="#testimonial_carousel" data-slide-to="#{index}" class="carousel-link #{index == 0 ? 'active':''}"]
+                        .testimonial-image class="#{index == 0 ? 'active' : 'not-active'}"
+                            = image_tag(testimonial.image)
+            .col-6.order-0
+              .row.carousel-inner
+                - blok.testimonial_items.each_with_index do |testimonial,index|
+                  .col-12.carousel-item class="#{index == 0 ? 'active' : 'not-active'}"
+                    .row
+                      .col-12.pt-3
+                        h3.testimonial-name.mb-3= testimonial.name
+                        h4.testimonial-title.mb-3= testimonial.title
+                        p.testimonial-text= testimonial.text

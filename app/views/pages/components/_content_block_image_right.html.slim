@@ -1,0 +1,12 @@
+= blok._editable.html_safe
+.container-fluid.py-5.content-block-image-right.background-gray
+  .container.py-5
+    .row.py-5
+      .col-12.col-md-6.order-1.order-md-0
+        h2.mb-4= blok.heading
+        = richtext(blok.text)
+        - if blok.cta_button.first
+          = link_to blok.cta_button.first.text, blok.cta_button.first.link.url, class: "btn btn-lg btn-gigwage mt-5"
+
+      .col-12.col-md-6.order-0.order-md-1
+        = image_tag blok.image, class: "content-block-image"

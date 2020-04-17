@@ -1,0 +1,15 @@
+= blok._editable.html_safe
+.container-fluid.py-5.three-feature-row
+  .container
+    .row.py-5
+      - blok.feature_items.each do |feature|
+        .col-12.col-md-4.px-3
+          .row.no-gutters
+            .col-12.text-center
+              = image_tag(feature.icon, style: "height: 60px; width: auto;")
+          .row.no-gutters
+            .col-12.text-center
+              h4= feature.name
+          .row.no-gutters.text-center
+            .col-12.feature-description
+              = feature.description

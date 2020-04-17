@@ -1,0 +1,9 @@
+= blok._editable.html_safe
+.jumbotron.jumbotron-fluid.bg-white#homepage-jumbotron style="background-image: url('#{asset_url('blob1.svg')}'); background-position: right top; background-repeat: no-repeat;"
+  .bg-container style="background-image: url('#{blok.background_image}'); background-position: right 100px; background-repeat: no-repeat;"
+    .container
+      .row
+        .col-12.col-lg-5.text-center.text-lg-left
+          h1= blok.title
+          p.my-5.lead= blok.subtitle
+          = link_to t('request_access'), "/request-access", class: "btn btn-lg my-4 btn-gigwage"

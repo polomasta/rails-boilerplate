@@ -1,0 +1,20 @@
+= blok._editable.html_safe
+.jumbotron.jumbotron-fluid#feature_grid.bg-white
+  = image_tag 'blob-2.svg', id: "blob_left"
+  .container
+    .row
+      .col-12.col-lg-6.mb-5
+        h1.underline-brand-primary= blok.heading
+
+    .row
+      .col-12.col-md-8.offset-md-4
+        .row
+          - blok.feature_items.each do |feature|
+            .col-12.col-md-6.mb-5.px-4
+              .row.no-gutters
+                .col-4.mb-3
+                  = image_tag(feature.icon)
+                .col-8
+                  h4= feature.name
+              .row.no-gutters
+                .feature-description= richtext(feature.description)

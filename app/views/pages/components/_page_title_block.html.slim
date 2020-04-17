@@ -1,0 +1,9 @@
+= blok._editable.html_safe
+.container.justify-content-center.align-items-center.py-5
+  .row.py-5
+    .col-12.text-center.py-5
+      - if blok.image
+        = image_tag blok.image, class: "mb-4"
+      h1= blok.heading
+      hr.title.title-primary.my-4
+      h3= blok.sub_heading
