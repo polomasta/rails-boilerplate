@@ -4,7 +4,7 @@ class PagesController < ApplicationController
 
     client = Storyblok::Client.new(
       cache_version: Time.now.to_i,
-      token: ENV['STORYBLOK_TOKEN'],
+      token: 'DqUuzZizfjaQuajF37yhhwtt',
       version: 'draft'
     )
 
